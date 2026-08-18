@@ -27,7 +27,7 @@ const Header = () => {
         </nav>
         {user ? (
           <>
-            <span>{user.email}</span>
+            <span className={css.Username}>{user.displayName}</span>
             <button type="button" onClick={logout}>
               Logout
             </button>

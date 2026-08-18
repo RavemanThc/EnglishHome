@@ -8,21 +8,23 @@ import { useAuth } from "@/context/AuthContext";
 import { useFavorites } from "../hooks/useFavorites";
 interface Props {
   teacher: Teacher;
+  onRequireAuth: () => void;
 }
 
-const Teach = ({ teacher }: Props) => {
+const Teach = ({ teacher, onRequireAuth }: Props) => {
   const { user } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const { favorites, toggleFavorite } = useFavorites(user?.uid);
 
   const isFavorite = favorites.includes(teacher.id);
 
   const handleFavorite = () => {
+    console.log("FAVORITE CLICK");
+    console.log("USER:", user);
     if (!user) {
-      setIsAuthModalOpen(true);
+      onRequireAuth();
       return;
     }
 
@@ -68,7 +70,8 @@ const Teach = ({ teacher }: Props) => {
             </li>{" "}
             <span className={css.palka}>|</span>
             <li>
-              Price / 1 hour: <span className={css.price}>30$</span>
+              Price / 1 hour:{" "}
+              <span className={css.price}>{teacher.price_per_hour}$</span>
             </li>
           </ul>
           <button type="button" onClick={handleFavorite}>

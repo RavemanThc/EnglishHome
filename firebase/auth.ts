@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
   type User,
 } from "firebase/auth";
 
@@ -10,6 +11,7 @@ import { auth } from "./config";
 export type RegisterRequest = {
   email: string;
   password: string;
+  userName: string;
 };
 
 export const register = async (data: RegisterRequest) => {
@@ -18,6 +20,10 @@ export const register = async (data: RegisterRequest) => {
     data.email,
     data.password,
   );
+
+  await updateProfile(userCredential.user, {
+    displayName: data.userName,
+  });
 
   return userCredential.user;
 };

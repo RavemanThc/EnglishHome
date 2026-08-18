@@ -39,7 +39,8 @@
   flex-direction: row;
   gap: 8px;
 }
-.loginIcon {
+.Username {
+  cursor: default;
 }
 .registerButton {
   border-radius: 12px;
