@@ -87,10 +87,11 @@
   right: 104px;
 }
 .BottomHero {
-  width: 1440px;
+  width: 100%;
   padding: 0 64px;
 }
 .BottomWrap {
+  display: block;
   border-radius: 30px;
   border: 1.5px dashed var(--yellow);
   margin-bottom: 32px;

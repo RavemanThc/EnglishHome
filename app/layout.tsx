@@ -4,6 +4,7 @@ import "./globals.css";
 import "./reset.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -20,10 +21,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={roboto.variable}>
       <body>
-        <AuthProvider>
-          <Header />
-          {children}
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <Header />
+            {children}
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );

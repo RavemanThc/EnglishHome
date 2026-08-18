@@ -7,12 +7,16 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./config";
+export type RegisterRequest = {
+  email: string;
+  password: string;
+};
 
-export const register = async (email: string, password: string) => {
+export const register = async (data: RegisterRequest) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
-    email,
-    password,
+    data.email,
+    data.password,
   );
 
   return userCredential.user;
