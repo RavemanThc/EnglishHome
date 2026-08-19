@@ -13,8 +13,6 @@ export default function TeachersList({ teachers }: Props) {
   const [isRegModalOpen, setIsRegModalOpen] = useState(false);
 
   const handleRequireAuth = () => {
-    console.log("OPEN MODAL");
-
     setIsRegModalOpen(true);
   };
 

@@ -12,8 +12,6 @@ export default function TestAuthPage() {
   const handleRegister = async () => {
     try {
       const user = await register("newuser@example.com", "123456");
-
-      console.log("REGISTER:", user);
     } catch (error) {
       console.error("REGISTER ERROR:", error);
     }
@@ -22,8 +20,6 @@ export default function TestAuthPage() {
   const handleLogin = async () => {
     try {
       const user = await login("test@example.com", "123456");
-
-      console.log("LOGIN:", user);
     } catch (error) {
       console.error("LOGIN ERROR:", error);
     }
@@ -32,8 +28,6 @@ export default function TestAuthPage() {
   const handleLogout = async () => {
     try {
       await logout();
-
-      console.log("LOGOUT");
     } catch (error) {
       console.error("LOGOUT ERROR:", error);
     }

@@ -5,7 +5,15 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Header.module.css";
+import RegModal from "../Modals/RegModal/RegModal";
+import { useState } from "react";
+import LogModal from "../Modals/LogModal/LogModal";
 const Header = () => {
+  const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const handleRequireAuth = () => {
+    setIsRegModalOpen(true);
+  };
   const { user, logout } = useAuth();
 
   return (
@@ -35,19 +43,31 @@ const Header = () => {
         ) : (
           <>
             <div className={css.headerAuthBox}>
-              <button type="button" className={css.loginButton}>
+              <button
+                type="button"
+                className={css.loginButton}
+                onClick={() => setIsLoginModalOpen(true)}
+              >
                 <svg width="20" height="20" className={css.loginIcon}>
                   <use href="/icons.svg#icon-login" />
                 </svg>
                 Login
               </button>
-              <button type="button" className={css.registerButton}>
+              <button
+                type="button"
+                className={css.registerButton}
+                onClick={() => setIsRegModalOpen(true)}
+              >
                 Registration
               </button>
             </div>
           </>
         )}
-      </div>
+      </div>{" "}
+      {isRegModalOpen && <RegModal onClose={() => setIsRegModalOpen(false)} />}
+      {isLoginModalOpen && (
+        <LogModal onClose={() => setIsLoginModalOpen(false)} />
+      )}
     </header>
   );
 };

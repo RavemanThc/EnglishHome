@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { registerSchema } from "@/validation/registerSchema";
 import { register } from "@/firebase/auth";
 import css from "./RegModal.module.css";
+import LogModal from "../LogModal/LogModal";
 
 type RegisterFormData = yup.InferType<typeof registerSchema>;
 
@@ -46,8 +47,6 @@ export default function RegModal({ onClose }: Props) {
       setServerError("");
 
       const user = await register(data);
-
-      console.log("Registered:", user);
 
       onClose();
     } catch (error: unknown) {

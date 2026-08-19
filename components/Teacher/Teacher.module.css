@@ -29,6 +29,7 @@
 .avatar {
   border-radius: 50%;
   object-fit: cover;
+  height: auto;
 }
 .TeachInfoCard {
   width: 968px;

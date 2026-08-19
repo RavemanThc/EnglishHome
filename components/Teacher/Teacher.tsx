@@ -21,8 +21,6 @@ const Teach = ({ teacher, onRequireAuth }: Props) => {
   const isFavorite = favorites.includes(teacher.id);
 
   const handleFavorite = () => {
-    console.log("FAVORITE CLICK");
-    console.log("USER:", user);
     if (!user) {
       onRequireAuth();
       return;
@@ -56,21 +54,21 @@ const Teach = ({ teacher, onRequireAuth }: Props) => {
                 <use href="/icons.svg#icon-book" />
               </svg>
               <p>Lessons online</p>
-            </li>{" "}
+            </li>
             <span className={css.palka}>|</span>
             <li>
               <p>Lessons done: {teacher.lessons_done}</p>
-            </li>{" "}
+            </li>
             <span className={css.palka}>|</span>
             <li>
               <svg width="16" height="16">
                 <use href="/icons.svg#icon-star" />
               </svg>
               <p>Rating: {teacher.rating}</p>
-            </li>{" "}
+            </li>
             <span className={css.palka}>|</span>
             <li>
-              Price / 1 hour:{" "}
+              Price / 1 hour:
               <span className={css.price}>{teacher.price_per_hour}$</span>
             </li>
           </ul>
