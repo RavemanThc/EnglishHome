@@ -1,21 +1,22 @@
 "use client";
 
-import { Teacher } from "@/types/teachers";
+import { FiltersState, Teacher } from "@/types/teachers";
 import Image from "next/image";
 import { useState } from "react";
 import css from "./Teacher.module.css";
 import { useAuth } from "@/context/AuthContext";
 import { useFavorites } from "../hooks/useFavorites";
+import SubmitModal from "../Modals/SumbitModal.tsx/SubmitModal";
 interface Props {
   teacher: Teacher;
   onRequireAuth: () => void;
+  filters: FiltersState;
 }
 
-const Teach = ({ teacher, onRequireAuth }: Props) => {
+const Teach = ({ teacher, onRequireAuth, filters }: Props) => {
   const { user } = useAuth();
-
   const [isOpen, setIsOpen] = useState(false);
-
+  const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
   const { favorites, toggleFavorite } = useFavorites(user?.uid);
 
   const isFavorite = favorites.includes(teacher.id);
@@ -46,7 +47,9 @@ const Teach = ({ teacher, onRequireAuth }: Props) => {
         <header className={css.headwrap}>
           <div className={css.teachNameWrap}>
             <h2>Languages</h2>
-            <p className={css.teachName}>{teacher.name}</p>
+            <p className={css.teachName}>
+              {teacher.name} {teacher.surname}
+            </p>
           </div>
           <ul className={css.headlist}>
             <li>
@@ -128,17 +131,51 @@ const Teach = ({ teacher, onRequireAuth }: Props) => {
                   </div>
                 ))}
               </div>
+              <ul className={`${css.levelsWrap} ${css.levelsecond}`}>
+                {teacher.levels.map((level) => (
+                  <li
+                    key={level}
+                    className={`${css.levels} ${
+                      filters.level === level ? css.levelActive : ""
+                    }`}
+                  >
+                    &#35;{level}
+                  </li>
+                ))}
+              </ul>
+              <button
+                type="button"
+                className={css.trialButton}
+                onClick={() => setSelectedTeacher(teacher)}
+              >
+                Book trial lesson
+              </button>
             </div>
           )}
-          <ul className={css.levelsWrap}>
-            {teacher.levels.map((level, index) => (
-              <li className={css.levels} key={index}>
-                {level}
-              </li>
-            ))}
-          </ul>
+          {!isOpen ? (
+            <ul className={css.levelsWrap}>
+              {teacher.levels.map((level) => (
+                <li
+                  key={level}
+                  className={`${css.levels} ${
+                    filters.level === level ? css.levelActive : ""
+                  }`}
+                >
+                  &#35;{level}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <></>
+          )}
         </section>
       </div>
+      {selectedTeacher && (
+        <SubmitModal
+          teacher={selectedTeacher}
+          onClose={() => setSelectedTeacher(null)}
+        />
+      )}
     </article>
   );
 };

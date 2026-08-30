@@ -1,12 +1,14 @@
 import * as yup from "yup";
 
-export const registerSchema = yup.object({
+export const submitSchema = yup.object({
+  reason: yup.string().required("Choose your reason"),
+
   userName: yup
     .string()
     .trim()
     .required("Username is required")
     .min(2, "Username must contain at least 2 characters")
-    .max(15, "Username very long"),
+    .max(30, "Username very long"),
 
   email: yup
     .string()
@@ -14,8 +16,8 @@ export const registerSchema = yup.object({
     .email("Enter a valid email")
     .required("Email is required"),
 
-  password: yup
+  phone: yup
     .string()
-    .required("Password is required")
-    .min(8, "Password must contain at least 6 characters"),
+    .required("Phone number is required")
+    .matches(/^\+?[0-9\s()-]{10,20}$/, "Enter a valid phone number"),
 });

@@ -19,3 +19,17 @@ export interface Teacher {
   conditions: string[];
   experience: string;
 }
+export interface SubmitBook {
+  reason: string;
+  userName: string;
+  email: string;
+  phone: string;
+  teacherId: string;
+  teacherName: string;
+  teacherSurname: string;
+}
+export interface FiltersState {
+  language: string | null;
+  level: string | null;
+  price: number | null;
+}

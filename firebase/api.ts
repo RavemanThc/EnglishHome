@@ -1,6 +1,6 @@
-import { ref, get, set } from "firebase/database";
+import { ref, get, set, push } from "firebase/database";
 import { db } from "./config";
-import { Teacher } from "@/types/teachers";
+import { SubmitBook, Teacher } from "@/types/teachers";
 
 export const getTeachers = async (): Promise<Teacher[]> => {
   const snapshot = await get(ref(db, "teachers"));
@@ -30,4 +30,12 @@ export const addFavorite = async (uid: string, teacherId: string) => {
 };
 export const removeFavorite = async (uid: string, teacherId: string) => {
   await set(ref(db, `users/${uid}/favorites/${teacherId}`), null);
+};
+export const createBooking = async (bookingData: SubmitBook) => {
+  const bookingRef = push(ref(db, "bookings"));
+
+  await set(bookingRef, {
+    ...bookingData,
+    createdAt: Date.now(),
+  });
 };

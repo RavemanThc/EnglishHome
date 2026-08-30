@@ -11,9 +11,7 @@ import LogModal from "../Modals/LogModal/LogModal";
 const Header = () => {
   const [isRegModalOpen, setIsRegModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const handleRequireAuth = () => {
-    setIsRegModalOpen(true);
-  };
+
   const { user, logout } = useAuth();
 
   return (
@@ -34,14 +32,14 @@ const Header = () => {
           <Link href="/teachers">Teachers</Link>
         </nav>
         {user ? (
-          <>
+          <div className={css.headerAuthBox}>
             <span className={css.Username}>{user.displayName}</span>
             <button type="button" onClick={logout}>
               Logout
             </button>
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <div className={css.headerAuthBox}>
               <button
                 type="button"
@@ -61,7 +59,7 @@ const Header = () => {
                 Registration
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>{" "}
       {isRegModalOpen && <RegModal onClose={() => setIsRegModalOpen(false)} />}

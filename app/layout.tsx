@@ -5,6 +5,7 @@ import "./reset.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <AuthProvider>
             <Header />
             {children}
+            <Toaster position="top-center" />
           </AuthProvider>
         </QueryProvider>
       </body>
