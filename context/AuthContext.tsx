@@ -17,10 +17,16 @@ import {
   subscribeToAuth,
 } from "@/firebase/auth";
 
+type RegisterData = {
+  email: string;
+  password: string;
+  userName: string;
+};
+
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  register: (email: string, password: string) => Promise<User>;
+  register: (data: RegisterData) => Promise<User>;
   login: (email: string, password: string) => Promise<User>;
   logout: () => Promise<void>;
 };
@@ -40,8 +46,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return unsubscribe;
   }, []);
 
-  const register = async (email: string, password: string) => {
-    return firebaseRegister(email, password);
+  const register = async (data: RegisterData) => {
+    return firebaseRegister(data);
   };
 
   const login = async (email: string, password: string) => {
