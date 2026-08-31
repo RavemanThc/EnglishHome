@@ -1,24 +1,23 @@
 # EnglishHome
 
-EnglishHome — веб-приложение для поиска преподавателей английского языка. Пользователь может просматривать преподавателей, фильтровать их по языку, уровню и стоимости занятия, добавлять преподавателей в избранное и бронировать уроки.
+EnglishHome is a web application for finding English language teachers. Users can browse teachers, filter them by language, level, and hourly rate, add teachers to their favorites, and book lessons.
 
 ## ✨ Features
 
-- 👨‍🏫 Просмотр списка преподавателей
-- 🔎 Фильтрация преподавателей:
-  - по языку преподавания
-  - по уровню ученика
-  - по стоимости занятия
-  - только избранные преподаватели
+- 👨‍🏫 Browse a list of English teachers
+- 🔎 Filter teachers by:
+  - Teaching language
+  - Student level
+  - Hourly rate
+  - Favorites only
 
-- ❤️ Добавление и удаление преподавателей из избранного
-- 🔐 Регистрация и авторизация пользователей
-- 👤 Отображение профиля авторизованного пользователя
-- 📅 Бронирование уроков
-- 📚 Просмотр информации о преподавателе
-- 📱 Адаптивный интерфейс для различных устройств
-- ➕ `Load more` для постепенной загрузки списка преподавателей
-- 🔒 Защита функций, доступных только авторизованным пользователям
+- ❤️ Add and remove teachers from favorites
+- 🔐 User registration and authentication
+- 👤 Display the authenticated user's profile
+- 📅 Book lessons with teachers
+- 📚 View detailed teacher information
+- ➕ `Load more` functionality for the teacher list
+- 🔒 Authentication-based access to protected features
 
 ## 🛠 Tech Stack
 
@@ -34,8 +33,8 @@ EnglishHome — веб-приложение для поиска преподав
 
 ### Backend / Services
 
-- **Firebase Authentication** — регистрация и авторизация пользователей
-- **Firebase Realtime Database** — хранение пользовательских данных и избранных преподавателей
+- **Firebase Authentication** — user registration and authentication
+- **Firebase Realtime Database** — storing user data and favorite teachers
 
 ## 📂 Project Structure
 
@@ -59,10 +58,9 @@ EnglishHome/
 ├── hooks/
 │   └── useFavorites.ts
 │
-├── lib/
-│   └── firebase/
-│       ├── api/
-│       └── ...
+├── firebase/
+│   ├── auth/
+│   └── ...
 │
 ├── types/
 │   └── teachers.ts
@@ -79,7 +77,7 @@ EnglishHome/
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone <git@github.com:RavemanThc/EnglishHome.git>
 ```
 
 ### 2. Navigate to the project directory
@@ -116,38 +114,38 @@ Add your Firebase project configuration values.
 npm run dev
 ```
 
-Open the application in your browser:
+The application will be available at:
 
 ```text
-http://localhost:3000
+https://english-home.vercel.app/teachers
 ```
 
 ## 🔐 Authentication
 
-Authentication is implemented using Firebase Authentication.
+Authentication is implemented using **Firebase Authentication**.
 
 Users can:
 
-- create an account
-- log in
-- log out
-- access features available only to authenticated users
+- Create an account
+- Log in
+- Log out
+- Access features available only to authenticated users
 
 ## ❤️ Favorites
 
-The application allows authenticated users to save teachers to their favorites.
+Authenticated users can save teachers to their favorites.
 
-The favorites system is implemented using:
+The favorites functionality is implemented using:
 
 - Firebase Realtime Database
-- `useFavorites` custom hook
-- user-specific Firebase data
+- The `useFavorites` custom hook
+- User-specific Firebase data
 
-The favorites filter allows users to display only teachers they have saved.
+Users can also enable the favorites filter to display only teachers they have saved.
 
 ## 🔎 Filtering
 
-Teachers can be filtered using several parameters simultaneously:
+Teachers can be filtered using multiple criteria simultaneously:
 
 ```text
 Language
@@ -159,43 +157,41 @@ Price
 Favorites
 ```
 
-Filters are combined, so the resulting list contains only teachers matching all selected criteria.
+All selected filters are applied together, so the resulting list contains only teachers that match the selected criteria.
 
-## 📱 Responsive Design
-
-The interface is designed to work across different screen sizes:
+The application is designed to provide a consistent user experience across different screen sizes:
 
 - 💻 Desktop
 
-The project follows a responsive and adaptive approach to provide a consistent user experience on different devices.
+The project follows a responsive and adaptive design approach.
 
 ## 🧩 Component Architecture
 
-The application is divided into reusable React components.
+The application is built using reusable React components.
 
-Examples include:
+Key components include:
 
-- `Filters` — filtering controls
-- `TeachersList` — displaying and filtering teachers
+- `Filters` — teacher filtering controls
+- `TeachersList` — displays and filters the teacher list
 - `Teacher` — individual teacher card
-- `RegModal` — registration modal
-- `AuthContext` — authentication state management
-- `useFavorites` — favorites management
+- `RegModal` — user registration modal
+- `AuthContext` — global authentication state management
+- `useFavorites` — favorite teachers management
 
-This approach keeps the application modular and makes individual features easier to maintain and extend.
+This component-based architecture keeps the application modular, maintainable, and easy to extend.
 
 ## 🚀 Future Improvements
 
 Possible future improvements include:
 
-- pagination / infinite scrolling
-- teacher search
-- sorting by price
-- improved booking functionality
-- teacher availability calendar
-- improved loading and error states
-- additional user profile functionality
-- performance optimizations
+- Pagination or infinite scrolling
+- Teacher search functionality
+- Sorting by price
+- Enhanced booking functionality
+- Teacher availability calendar
+- Improved loading and error states
+- Additional user profile functionality
+- Performance optimizations
 
 ## 👨‍💻 Author
 
