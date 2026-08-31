@@ -3,23 +3,26 @@
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import css from "./Filters.module.css";
-import { Teacher } from "@/types/teachers";
-
-interface FiltersState {
-  language: string | null;
-  level: string | null;
-  price: number | null;
-}
+import { FiltersState, Teacher } from "@/types/teachers";
+import { useAuth } from "@/context/AuthContext";
+import { useFavorites } from "../hooks/useFavorites";
 
 interface Props {
   teachers: Teacher[];
-  filters: FiltersState;
   onFilterChange: (filters: FiltersState) => void;
 }
 
-const Filters = ({ teachers, filters, onFilterChange }: Props) => {
+const Filters = ({ teachers, onFilterChange }: Props) => {
   const [openFilter, setOpenFilter] = useState<string | null>(null);
+  const [filters, setFilters] = useState<FiltersState>({
+    language: null,
+    level: null,
+    price: null,
+    favoritesOnly: false,
+  });
 
+  const { user, logout } = useAuth();
+  const { favorites } = useFavorites(user?.uid);
   const languages = [
     ...new Set(teachers.flatMap((teacher) => teacher.languages)),
   ];
@@ -177,6 +180,37 @@ const Filters = ({ teachers, filters, onFilterChange }: Props) => {
             </ul>
           )}
         </div>
+        {user && (
+          <div
+            className={`${css.favoriteWrap} ${filters.favoritesOnly ? css.favoriteWrapActive : ""}`}
+          >
+            <button
+              type="button"
+              onClick={() => {
+                const newFilters = {
+                  ...filters,
+                  favoritesOnly: !filters.favoritesOnly,
+                };
+                setFilters(newFilters);
+                onFilterChange(newFilters);
+              }}
+              className={`${css.toggle} ${
+                filters.favoritesOnly ? css.Favorite : ""
+              }`}
+              aria-label="Show favorites"
+            >
+              <span className={css.icon}>
+                <svg
+                  width="28"
+                  height="26"
+                  className={`${css.heart} ${filters.favoritesOnly ? css.heartActive : ""}`}
+                >
+                  <use href="/icons.svg#icon-heart" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

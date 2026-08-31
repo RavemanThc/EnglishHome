@@ -1,5 +1,7 @@
 .TeachersPage {
-  width: 100%;
-  background: #f8f8f8;
+  max-width: 1440px;
   padding: 96px 128px;
+}
+body {
+  background: #f8f8f8;
 }

@@ -1,0 +1,16 @@
+.teacherListWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loadMore {
+  margin: 0 auto;
+  border-radius: 12px;
+  width: 183px;
+  height: 60px;
+  background: var(--yellow);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+}

@@ -58,3 +58,45 @@
 .FilterButton:focus {
   color: #121417;
 }
+
+.favoriteWrap {
+  background: #fff;
+  width: 75px;
+  height: 20px;
+  border-radius: 30px;
+  margin-top: 35px;
+  margin-left: 350px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.heart {
+  fill: none;
+  stroke: currentColor;
+}
+.heartActive {
+  fill: red;
+  stroke: red;
+}
+.favoriteWrapActive {
+  background-color: var(--yellow);
+}
+.toggle {
+  width: 50px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.Favorite .icon {
+  transform: translate(47px, -50%);
+}

@@ -38,6 +38,7 @@ const Teach = ({ teacher, onRequireAuth, filters }: Props) => {
           width={96}
           height={96}
           className={css.avatar}
+          loading="lazy"
         />
         <svg width="12" height="12" className={css.onlineIco}>
           <use href="/icons.svg#icon-online" />
